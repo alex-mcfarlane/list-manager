@@ -33,11 +33,15 @@ class FTP {
     
     public function getFileAsLocalFile($serverFile)
     {
-        
+        $localFile = "local.csv";
+
+        return $this->getFile($localFile, $serverFile);
     }
     
     private function getFile($localDest, $serverFile)
     {
-        return ftp_get($this->connId, $localDest, $serverFile, FTP_BINARY);
+        ftp_get($this->connId, $localDest, $serverFile, FTP_BINARY);
+        
+        return $localDest;
     }
 }
