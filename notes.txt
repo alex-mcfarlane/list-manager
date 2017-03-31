@@ -2,3 +2,20 @@ Subscribers
 -first_name
 -last_name
 -email
+-region_id
+
+Region
+-name
+
+Unsubscribers
+-first_name
+-last_name
+-email (not unique)
+-reason
+
+# There can be multiple entries with the same email in Unsubscribers as users can unsubscribe more than once and
+  we need a history of this.
+
+# We will create a hash of all unsubscribes. When we send emails for all subscribers, we will make sure they are not in
+  the unsubscribed. If they are, do not send the email and remove them from subscribed. It is best to do this logic
+  during the email sending process as we are already looping through the list of subscribers.

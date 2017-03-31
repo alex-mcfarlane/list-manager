@@ -18,7 +18,7 @@ class CreateSubscribersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->integer('region_id')->unsigned();
+            $table->integer('region_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
