@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "SubscriberController@importSubscribers");
 
-Route::get('/getSubscribers', "SubscriberController@bulkImport");
+Route::post('/subscribers', "SubscriberController@store");

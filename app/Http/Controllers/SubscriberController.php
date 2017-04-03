@@ -9,10 +9,18 @@ use App\Subscriber;
 
 class SubscriberController extends Controller
 {
-    public function bulkImport()
+    public function importSubscribers()
     {
+        return view('subscribers.import');
+    }
+
+    public function store(Request $request)
+    {
+        $fileName = $request->input('file_name');
+        $fileType = $request->input('file_type');
+
         $ftpClient = new FTP();
-        $data = $ftpClient->getFileInMemory("Book1.csv");
+        $data = $ftpClient->getFileInMemory($fileName.".".$fileType);
         
         //parse file contents into array
         $fileParser = new CSVParser();
