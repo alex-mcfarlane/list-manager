@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Factories\FileParserFactory;
 use Illuminate\Http\Request;
 use App\Core\Services\FTP;
 use App\Core\Services\CSVParser;
@@ -23,7 +24,7 @@ class SubscriberController extends Controller
         $data = $ftpClient->getFileInMemory($fileName.".".$fileType);
         
         //parse file contents into array
-        $fileParser = new CSVParser();
+        $fileParser = FileParserFactory::createParser($fileType);
         $subscribedArr = $fileParser->parse($data);
         
         foreach($subscribedArr as $subscriber) {
