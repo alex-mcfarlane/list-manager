@@ -4,5 +4,7 @@ namespace App\Core\Services;
 
 interface IFileParser
 {
-    public function parse($fileContents);
+    public function parseFileString($fileContents);
+
+    public function parseFile($file);
 }
