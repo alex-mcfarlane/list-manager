@@ -11,6 +11,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="/components/foundation/css/foundation.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/app.css" type="text/css">
         <style>
             html, body {
                 background-color: #fff;
