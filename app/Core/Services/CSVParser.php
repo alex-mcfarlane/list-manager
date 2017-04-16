@@ -12,10 +12,10 @@ class CSVParser implements IFileParser
         $returnArr = [];
 
         // get column header
-        $header = str_getcsv(array_shift($lines));
+        $header = $this->convertKeys(str_getcsv(array_shift($lines)));
 
         for($i=0; $i < count($lines)-1; $i++) {
-            $returnArr[] = array_combine(str_getcsv($lines[$i]), $header);
+            $returnArr[] = array_combine($header, str_getcsv($lines[$i]));
         }
         
         return $returnArr;
@@ -36,5 +36,40 @@ class CSVParser implements IFileParser
         fclose($handle);
 
         return $returnArr;
+    }
+
+    private function convertKeys($keys)
+    {
+        $convertedKeys = [];
+        $hash = [
+            "customer_id" => ["Customer ID"],
+            "first_name" => ["First Name"],
+            "last_name" => ["Last Name"],
+            "email" => ["Email"],
+            "region" => ["Region"],
+            "company" => ["Company"],
+        ];
+
+        foreach($keys as $key)
+        {
+            $match = '';
+
+            foreach($hash as $column => $options) {
+                if(in_array($key, $options)) {
+                    $match = $column;
+                    break;
+                }
+            }
+
+            if(!empty($match)) {
+                $convertedKeys[] = $match;
+            }
+            else{
+                $convertedKeys[] = $key;
+            }
+
+        }
+
+        return $convertedKeys;
     }
 }
