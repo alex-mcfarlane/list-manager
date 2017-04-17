@@ -13,4 +13,5 @@
 
 Route::get('/', "SubscriberController@importSubscribers");
 
+Route::get('/subscribers', "SubscriberController@all");
 Route::post('/subscribers', "SubscriberController@store");
